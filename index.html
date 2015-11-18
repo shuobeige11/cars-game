@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script type="text/javascript">
+(function(){var a=window.screen.availWidth;var b=window.screen.availWidth/window.devicePixelRatio;var deviceWidths =a>640?b:a;var Win={dev:640,fonts:20,start:function(){this.boots()},boots:function(){var dpr=1,f=this.fonts;if(deviceWidths<800){dpr=1/window.devicePixelRatio;f=((this.fonts/dpr)*(deviceWidths/320)).toFixed(3);var ele=document.createElement("meta");document.head.appendChild(ele);ele.setAttribute("name","viewport");var e="initial-scale="+dpr+",maximum-scale="+dpr+",minimum-scale="+dpr+",user-scalable=no";ele.setAttribute("content",e)};document.head.parentNode.style.fontSize=f+"px";var c=window.devicePixelRatio;document.head.parentNode.setAttribute("data-dpr",c)}};Win.start()}()); </script>
+  <link rel="stylesheet" type="text/css" href="image/all.css">
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+</body>
+<script type="text/javascript" src="script/basket.js"></script>
+<script type="text/javascript">
+	(function(){
+		var canvas=document.getElementById("canvas");
+		canvas.width=window.innerWidth;
+		canvas.height=window.innerHeight;
+		Basket({
+			"uri":"image/basket.png",
+			"id":"canvas"
+		})
+		
+	}());
+
+
+		
+</script>
+</html>
