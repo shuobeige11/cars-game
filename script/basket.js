@@ -1,12 +1,13 @@
-var arr1=[];
+
 function Basket(option){
+   Basket.prototype.arr1={cx:0,cy:0};
    return new Basket.prototype.init(option)
 }
 Basket.prototype.init=function(option){
 	this.opt=option;
 	this.canvas=document.getElementById(this.opt.id);
 	this.ctx=this.canvas.getContext("2d");
-	this.a={cx:0,cy:0,imgX:0};
+	this.a={cx:0,cy:0,imgX:0,imgY:0};
 	this.c={cx:0,cy:0};
 	this.b={cx:0,cy:0};
 	this.flag=true;
@@ -25,6 +26,8 @@ Basket.prototype.init.prototype={
 			_this.a.cx=(startX-image.width)/2;
 			_this.a.cy=startY-image.height;
 			_this.a.imgX=image.width;
+			_this.a.imgY=image.height;
+			Basket.prototype.arr1.cy=_this.a.cy;
 			cxt.drawImage(image,_this.a.cx,_this.a.cy);
 		}
 	},
@@ -34,7 +37,7 @@ Basket.prototype.init.prototype={
 			starts(_this,e);e.preventDefault();},false);
 		document.addEventListener("touchmove",function(e){
 			moves(_this,e);e.preventDefault();},false);
-		document.addEventListener("touchup",function(e){
+		document.addEventListener("touchend",function(e){
 			ups(_this,e);e.preventDefault();},false);
 	}
 }
@@ -57,23 +60,23 @@ function moves(_this,e){
 	if(_this.flag){
 		drawCar(_this,_this.c.cx)
 	}
+	e.stopPropagation();
 };
-function ups(){
+function ups(_this,e){
+	_this.a.cx=_this.b.cx;
+	Basket.prototype.arr1.cx=_this.b.cx;
+	Basket.prototype.arr1.cy=_this.c.cy;
 
 };
 
 function drawCar(_this,a){
 	var cxt=_this.ctx;
 	var scrX=window.innerWidth;
-	var scrY=window.innerHeight;
-	cxt.clearRect(0,0,scrX,scrY);
+	cxt.clearRect(0,_this.c.cy,scrX,_this.a.imgY);
 	var image=new Image();
 	image.src=_this.opt.uri;
 	image.onload=function(){
 		cxt.drawImage(image,a,_this.c.cy);
 	}
-	return{
-		nowLeft:a,
-		nowTop:_this.c.cy
-	}
+	_this.b.cx=a
 }

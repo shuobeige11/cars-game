@@ -10,6 +10,7 @@
 <body>
 	<canvas id="canvas"></canvas>
 </body>
+<script type="text/javascript" src="script/money.js"></script>
 <script type="text/javascript" src="script/basket.js"></script>
 <script type="text/javascript">
 	(function(){
@@ -18,11 +19,17 @@
 		canvas.height=window.innerHeight;
 		Basket({
 			"uri":"image/basket.png",
-			"id":"canvas"
-		})
-		
+			"id":"canvas",
+			"img1":"image/money_1.png",
+			"img2":"image/money_2.png"
+		});
+		Money({
+			"img1":"image/money_1.png",
+			"img2":"image/money_2.png",
+			"id":"canvas",
+			"timer":2
+		})	
 	}());
-
 
 		
 </script>
